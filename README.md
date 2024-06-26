@@ -1,73 +1,70 @@
-# Sobre o projeto
+# Sistema de Recomendação de Livros
 
-Este projeto implementa um sistema de recomendação de livros utilizando Flask, Pandas, e scikit-learn. O sistema oferece duas formas de recomendação:
+Este projeto implementa um sistema de recomendação de livros utilizando Flask, Pandas, e scikit-
 
-Recomendações Colaborativas: Com base nas avaliações de outros usuários, recomenda livros para um usuário específico usando o algoritmo k-Nearest Neighbors (k-NN).
-Recomendações Baseadas em Conteúdo: Com base na similaridade entre descrições de livros usando a técnica TF-IDF (Term Frequency-Inverse Document Frequency).
+learn. O sistema oferece duas formas de recomendação:
 
-## Layout mobile
-![Mobile 1](https://github.com/acenelio/assets/raw/main/sds1/mobile1.png) ![Mobile 2](https://github.com/acenelio/assets/raw/main/sds1/mobile2.png)
+**1. Recomendações Colaborativas:** 
 
-## Layout web
-![Web 1](https://github.com/acenelio/assets/raw/main/sds1/web1.png)
+Com base nas avaliações de outros usuários, recomenda livros
+para um usuário específico usando o algoritmo k-Nearest Neighbors (k-NN).
 
-![Web 2](https://github.com/acenelio/assets/raw/main/sds1/web2.png)
+**2. Recomendações Baseadas em Conteúdo:**
 
-## Modelo conceitual
-![Modelo Conceitual](https://github.com/acenelio/assets/raw/main/sds1/modelo-conceitual.png)
+Com base na similaridade entre descrições de livros
 
-# Tecnologias utilizadas
-## Back end
-- Java
-- Spring Boot
-- JPA / Hibernate
-- Maven
-## Front end
-- HTML / CSS / JS / TypeScript
-- ReactJS
-- React Native
-- Apex Charts
-- Expo
-## Implantação em produção
-- Back end: Heroku
-- Front end web: Netlify
-- Banco de dados: Postgresql
+usando a técnica TF-IDF (Term Frequency-Inverse Document Frequency).
 
-# Como executar o projeto
+## Configuração do Projeto
 
-## Back end
-Pré-requisitos: Java 11
+### Pré-requisitos
+Certifique-se de ter instalado:
 
-```bash
-# clonar repositório
-git clone https://github.com/devsuperior/sds1-wmazoni
+- Python 3.x
+- Flask
+- Pandas
+- scikit-learn
 
-# entrar na pasta do projeto back end
-cd backend
+## Instalação
+1. Clone o repositório:
 
-# executar o projeto
-./mvnw spring-boot:run
+````shell
+git clone https://github.com/seu-usuario/nome-do-repositorio.git
+cd nome-do-repositorio
+````
+2. Instale as dependências:
+````shell
+pip install -r requirements.txt
+````
+
+
+## Como Executar
+
+Para iniciar o servidor Flask:
+
+Para iniciar 
+```shell
+python app.py
 ```
+O sistema estará disponível em http://localhost:5000/.
 
-## Front end web
-Pré-requisitos: npm / yarn
+### Testando o Sistema
 
-```bash
-# clonar repositório
-git clone https://github.com/devsuperior/sds1-wmazoni
+- **Recomendações Colaborativas:**
 
-# entrar na pasta do projeto front end web
-cd front-web
+  Insira o ID do usuário que deseja visualizar as recomendações
 
-# instalar dependências
-yarn install
+     -- Retorna até 5 recomendações de livros para o usuário especificado.
 
-# executar o projeto
-yarn start
-```
+- **Recomendações Baseadas em Conteúdo:**
+ 
+  Insira o ID do livro que deseja visualizar as recomendações
+ 
+    -- Retorna até 5 livros mais similares ao livro especificado.
 
-# Autor
+### Estrutura do Projeto
 
-Wellington Mazoni de Andrade
-
-https://www.linkedin.com/in/wmazoni
+- **app.py:** Contém a lógica principal do servidor Flask e os endpoints de API.
+- **templates/index.html:** Página HTML para interface de usuário.
+- **user_reading_history.csv:** Histórico de leitura dos usuários.
+- **book_metadata.csv:** Metadados dos livros.
