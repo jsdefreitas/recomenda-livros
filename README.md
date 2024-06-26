@@ -7,6 +7,7 @@ learn. O sistema oferece duas formas de recomendação:
 **1. Recomendações Colaborativas:** 
 
 Com base nas avaliações de outros usuários, recomenda livros
+
 para um usuário específico usando o algoritmo k-Nearest Neighbors (k-NN).
 
 **2. Recomendações Baseadas em Conteúdo:**
