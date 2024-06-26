@@ -4,6 +4,7 @@ Este projeto implementa um sistema de recomendação de livros utilizando Flask,
 
 learn. O sistema oferece duas formas de recomendação:
 
+
 **1. Recomendações Colaborativas:** 
 
 Com base nas avaliações de outros usuários, recomenda livros
