@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Similar Books Recommendation</title>
+</head>
+<body>
+    <h1>Books Similar to {{ books_df[books_df['book_id'] == book_id]['title'].values[0] }}</h1>
+    <ul>
+        {% for book in recommendations %}
+            <li>{{ book }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

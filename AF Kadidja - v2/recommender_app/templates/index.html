@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendações de Livros</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- CSS personalizado -->
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .custom-container {
+            margin-top: 50px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container custom-container">
+        <h1 class="mt-5 mb-4 text-center">Recomendações de Livros</h1>
+        <form id="collaborative-form">
+            <div class="form-group">
+                <label for="user-id">ID do Usuário:</label>
+                <input type="number" class="form-control" id="user-id" name="user_id" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Obter recomendações colaborativas</button>
+        </form>
+        <hr>
+        <div id="collaborative-recommendations" class="mb-4">
+            <!-- Resultados das recomendações colaborativas serão exibidos aqui -->
+        </div>
+        <hr>
+        <form id="content-form">
+            <div class="form-group">
+                <label for="book-id">ID do Livro:</label>
+                <input type="number" class="form-control" id="book-id" name="book_id" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Obter recomendações baseadas em conteúdo</button>
+        </form>
+        <hr>
+        <div id="content-recommendations">
+            <!-- Resultados das recomendações baseadas em conteúdo serão exibidos aqui -->
+        </div>
+    </div>
+
+    <!-- jQuery e Bootstrap JS (coloque-os antes do fechamento da tag </body>) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script personalizado para enviar requisições AJAX -->
+    <script>
+        $(document).ready(function() {
+            // Manipular o formulário de recomendações colaborativas
+            $('#collaborative-form').submit(function(event) {
+                event.preventDefault();
+                var user_id = $('#user-id').val();
+                $.ajax({
+                    url: '/recommendations/' + user_id,
+                    type: 'GET',
+                    success: function(data) {
+                        displayCollaborativeRecommendations(data);
+                    },
+                    error: function(err) {
+                        console.error('Erro ao obter recomendações colaborativas:', err);
+                    }
+                });
+            });
+
+            // Manipular o formulário de recomendações baseadas em conteúdo
+            $('#content-form').submit(function(event) {
+                event.preventDefault();
+                var book_id = $('#book-id').val();
+                $.ajax({
+                    url: '/content-recommendations/' + book_id,
+                    type: 'GET',
+                    success: function(data) {
+                        displayContentBasedRecommendations(data);
+                    },
+                    error: function(err) {
+                        console.error('Erro ao obter recomendações baseadas em conteúdo:', err);
+                    }
+                });
+            });
+
+            // Função para exibir recomendações colaborativas
+            function displayCollaborativeRecommendations(data) {
+                var html = '<h4>Recomendações colaborativas para o usuário ' + $('#user-id').val() + '</h4>';
+                if (data.length === 0) {
+                    html += '<p>Nenhuma recomendação encontrada.</p>';
+                } else {
+                    html += '<ul>';
+                    data.forEach(function(item) {
+                        html += '<li>' + item.title + '</li>';
+                    });
+                    html += '</ul>';
+                }
+                $('#collaborative-recommendations').html(html);
+            }
+
+            // Função para exibir recomendações baseadas em conteúdo
+            function displayContentBasedRecommendations(data) {
+                var html = '<h4>Recomendações baseadas em conteúdo para o livro ' + $('#book-id').val() + '</h4>';
+                if (data.length === 0) {
+                    html += '<p>Nenhuma recomendação encontrada.</p>';
+                } else {
+                    html += '<ul>';
+                    data.forEach(function(item) {
+                        html += '<li>' + item.title + '</li>';
+                    });
+                    html += '</ul>';
+                }
+                $('#content-recommendations').html(html);
+            }
+        });
+    </script>
+</body>
+</html>
