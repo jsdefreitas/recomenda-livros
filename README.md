@@ -28,11 +28,10 @@ Certifique-se de ter instalado:
 - scikit-learn
 
 ## Instalação
-1. Clone o repositório:
+1. Baixe o repositório:
 
 ````shell
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
-cd nome-do-repositorio
+https://github.com/jsdefreitas/recomenda-livros.git
 ````
 2. Instale as dependências:
 ````shell
